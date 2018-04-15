@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start-client": "ng serve --no-open",
-    "copy-dist": "cp -Rf dist/* public"
+    "copy-dist": "cp -Rf dist/* public",
+    "clean-public": "rm -Rf ./public/*"
   },
   "private": true,
   "dependencies": {

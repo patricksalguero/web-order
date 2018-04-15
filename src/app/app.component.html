@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <h3>Notificaciones via Socket</h3>
+
+      <notification #my_notification
+        (show)="mostrado($event)"
+        (load)="cargar($event)"
+        [title]="notication.title"
+        [body]="notication.body"
+        [icon]="notication.icon">
+      </notification>
+
+      <button type="button" class="btn btn-primary" (click)="my_notification.show()">
+        Mostrar Notificación
+      </button>
+    </div>
+  </div>
+</div>
