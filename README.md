@@ -1,27 +1,45 @@
-# Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
+# Dashboard web - App Order
 
-## Development server
+Aplicación angular 5+ web que permite adminitrar la aplicación movil de App Order 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Modulos
+1. Login Standar con JWT
+2. Login con Google sign in
+3. Administracion de Productos
+4. Administracion de Clientes
+5. Gestion segun el flujo establecido de Pedidos
+6. Socket para ver quien está conectado
+7. Socket para ver la vida de la aplicacion en el Servidor
+8. Administración de Usuarios
+9. Administracion de Confirmación de nuevos clientes
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Instalación
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+1. Para instalar la web dashboard es necesario ejecutar los siguientes comando en su orden correspondiente.
 
-## Running unit tests
+    * `npm install`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    * `node app.js`
 
-## Running end-to-end tests
+    * Abrir navegador localhost:8002
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+ 
+## Compilación
+1. En caso se desee compilar nuevamente ejecutar los siguientes comandos.
 
-## Further help
+    * `ng build --prod --aot`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+
+
+
+
+
+
+
+
