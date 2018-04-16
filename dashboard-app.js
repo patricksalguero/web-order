@@ -20,6 +20,7 @@ const DB_URL = config.CON_STRING
 
 //	Rutas de la Aplicacion
 const app_routes = require('./api/routes/app.routes')
+const product_routes = require('./api/routes/product.routes')
 
 //	Middleware - CORS de la Api Restfull
 app.use(function(req, res, next) {
@@ -37,7 +38,7 @@ app.use( bodyParser.json() )
 
 //  Conexion de la BD Mongo DB
 mongoose.connect(DB_URL , err => {
-    if( !err ) console.log('Conectado a MongoDB correctamente!')
+    if( !err ) console.log('ONLINE MONGODB')
     if( err ) throw err
 })
 
@@ -45,6 +46,7 @@ mongoose.connect(DB_URL , err => {
 //	Configuraciones de la rutas y sockets
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/api', app_routes )
+app.use('/api/product/' , product_routes )
 
 io.of('/socket-app').on('connection', (socket) => {
   console.log('Nueva conección: ' + socket.id )  
