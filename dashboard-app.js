@@ -49,7 +49,11 @@ app.use('/api', app_routes )
 app.use('/api/product/' , product_routes )
 
 io.of('/socket-app').on('connection', (socket) => {
-  console.log('Nueva conección: ' + socket.id )  
+    console.log('===========================================')
+    console.log('Nueva conección: ' + socket.id )  
+    console.log('IP Socket: ' + socket.handshake.address)
+    console.log('===========================================')
+
   socket.emit('psalguero' , { message: 'Mensaje desde el Servidor.' })
 })
 

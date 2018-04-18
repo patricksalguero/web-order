@@ -86,6 +86,9 @@ const saveProduct = ( request , response , nextFunction ) => {
             })
         }
 
+        global.io.of('/socket-app')
+            .emit('product-save', { message: 'Se ha registrado un nuevo producto'})
+
         return response.status(200).json({
             ok : true ,
             message: 'Producto registrado correctamente.',
