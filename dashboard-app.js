@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const path = require('path')
 const config  = require('./api/config/configuration')
-
+var getIP = require('ipware')().get_ip;
 
 //	Inicializar la aplicacion
 const app = express()
@@ -30,6 +30,13 @@ app.use(function(req, res, next) {
      next()
  })
 
+app.use((req,res,next) => {
+    var ipInfo = getIP(req);
+    console.log(ipInfo);
+    next()
+})
+
+
 //  Morgan
 app.use(logger('dev'));
 //	Body-parser
@@ -51,7 +58,7 @@ app.use('/api/product/' , product_routes )
 io.of('/socket-app').on('connection', (socket) => {
     console.log('===========================================')
     console.log('Nueva conección: ' + socket.id )
-    console.log('IP Socket: ' + socket.request.connection.remoteAddress)
+    console.log('IP Socket: ' + socket.request)
     console.log('===========================================')
 
   socket.emit('psalguero' , { message: 'Mensaje desde el Servidor.' })
