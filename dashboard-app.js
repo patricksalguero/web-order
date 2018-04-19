@@ -51,7 +51,7 @@ app.use('/api/product/' , product_routes )
 io.of('/socket-app').on('connection', (socket) => {
     console.log('===========================================')
     console.log('Nueva conección: ' + socket.id )
-    console.log('IP Socket: ' + socket.handshake.headers["x-real-ip"])
+    console.log('IP Socket: ' + socket.request.connection.remoteAddress)
     console.log('===========================================')
 
   socket.emit('psalguero' , { message: 'Mensaje desde el Servidor.' })
