@@ -21,6 +21,7 @@ const DB_URL = config.CON_STRING
 //	Rutas de la Aplicacion
 const app_routes = require('./api/routes/app.routes')
 const product_routes = require('./api/routes/product.routes')
+const seeker_routes = require('./api/routes/seeker.routes')
 
 //	Middleware - CORS de la Api Restfull
 app.use(function(req, res, next) {
@@ -54,6 +55,7 @@ mongoose.connect(DB_URL , err => {
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/api', app_routes )
 app.use('/api/product/' , product_routes )
+app.use('/api/seeker', seeker_routes)
 
 io.of('/socket-app').on('connection', (socket) => {
     console.log('===========================================')

@@ -8,7 +8,7 @@
 const Hospital = require('../models/Hospital')
 const Doctor   = require('../models/Doctor')
 const User     = require('../models/User')
-
+const Product  = require('../models/Product')
 
 // ==========================================
 // Busqueda por colleccion segun parametro
@@ -57,6 +57,18 @@ const findByCollection = ( request , response , nextFunction ) => {
             }).catch( err => console.log('Erro en Usuarios', err ))
         break;
 
+        case 'products':
+            console.log('Busqueda de productos')
+            findAllProductByText( findText , regExt ).then( products  => {
+                return response.status(200).json({
+                    ok: true ,
+                    search: findText,
+                    products : products,
+                    collection: collection
+                })
+            }).catch(errr => reponse.status(500).json({ ok:false , message: errr }))
+        break;
+
         default :
             console.log('Coleccion no correcta')
             return response.status(200).json({
@@ -83,7 +95,8 @@ const findInAll = ( request , response , nextFunction ) => {
 
     Promise.all([ findAllHospitalByText( textFind , regExt ) , 
                   findAllDoctorByText( textFind , regExt ) ,
-                  findAllUserByText( textFind , regExt )
+                  findAllUserByText( textFind , regExt ) ,
+                  findAllProductByText(textFind, regExt )
     ]).then( results => {
 
         return response.status(200).json({
@@ -91,7 +104,8 @@ const findInAll = ( request , response , nextFunction ) => {
             search : textFind ,
             hospitals : results[0],
             doctors : results[1] ,
-            users : results[2]
+            users : results[2] ,
+            products: results[3]
         })
     })
 
@@ -146,6 +160,21 @@ const findAllUserByText = ( text , regExt ) => {
             if( result != null ){
                 resolve( result )
             }
+        })
+    })
+}
+
+// ==========================================
+// Busqueda de Productos por Expresion Reg
+// ==========================================
+const findAllProductByText = ( text , regExt ) => {
+    return new Promise( (resolve,reject)=> {
+        Product.find({} , 'name , description , price , price_u , img')
+        .or([ { name: regExt } , { description: regExt }])
+        .limit(10)
+        .exec( (err,result) => {
+            if( err ) reject('Error al buscar producto', err )
+            if( result != null ) resolve(result)
         })
     })
 }
