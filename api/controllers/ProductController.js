@@ -8,6 +8,7 @@ const getListProducts = ( request , response , nextFunction ) => {
     Product.find({})
         .skip( since )
         .limit( 10 )
+        .sort({ updateAt: 'desc' , createAt:'desc'})
         .exec((err, products) => {
             if( err ) {
                 return response.status(500).json({
